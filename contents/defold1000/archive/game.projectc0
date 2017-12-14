@@ -1,0 +1,34 @@
+[project]
+title = My project
+version = 0.1
+
+[bootstrap]
+main_collection = /main/main.collectionc
+
+[input]
+game_binding = /input/game.input_bindingc
+use_accelerometer = 0
+
+[display]
+width = 1280
+height = 720
+variable_dt = 1
+
+[physics]
+scale = 0.02
+
+[script]
+shared_state = 1
+
+[html5]
+set_custom_heap_size = 0
+
+[sprite]
+max_count = 1024
+
+[factory]
+max_count = 1024
+
+[collection]
+max_instances = 1024
+

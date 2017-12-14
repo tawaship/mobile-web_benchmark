@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>pixi1</title>
+		<script src="../../lib/Creap.all.min.js"></script>
+		<script src="../../js/game2.js"></script>
+		<script>
+			var p;
+			var n = 1000;
+			document.addEventListener('DOMContentLoaded', function() {
+				var content = new Creap.Content('lib', 'game', 'images', 'ss');
+				p = new Creap.Application(content, document.body, {
+					width: innerWidth
+				}).on('initialized', function() {
+					this.start();
+				});
+				p.app.view.style.background= "#000000"
+			});
+		</script>
+	</head>
+	<body style="margin: 0px">
+	</body>
+</html>
