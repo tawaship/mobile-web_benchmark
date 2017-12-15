@@ -1,3 +1,4 @@
+
 (function (lib, img, cjs, ss, an) {
 
 var p; // shortcut to reference prototypes
@@ -69,9 +70,13 @@ p.nominalBounds = new cjs.Rectangle(-50,-50,100,100);
 			spd.push(createSpeed());
 		}
 		
+		var f = 0;
+		var cnt = 0;
+		
 		var l = this.co.children.length;
 		window.p.app.ticker.add(function(delta) {
-			var s, c;
+			
+			var s, c, o;
 			for (var i = 0; i < l; i++) {
 				c = self.co.children[i];
 				s = spd[i];
@@ -86,7 +91,11 @@ p.nominalBounds = new cjs.Rectangle(-50,-50,100,100);
 				}
 			}
 			
-			self.tx.text = 1 / delta * 60;
+			o = 1 / delta * 60;
+			self.tx.text = o;
+			f += o;
+			++cnt;
+			self.ttx.text = f / cnt;
 		});
 		
 		function createSpeed() {
@@ -98,13 +107,19 @@ p.nominalBounds = new cjs.Rectangle(-50,-50,100,100);
 	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1));
 
 	// レイヤー 3
+	this.ttx = new cjs.Text("0", "40px 'MS UI Gothic'", "#FF0000");
+	this.ttx.name = "ttx";
+	this.ttx.lineHeight = 42;
+	this.ttx.parent = this;
+	this.ttx.setTransform(878.3,130.3);
+
 	this.tx = new cjs.Text("0", "40px 'MS UI Gothic'", "#FF0000");
 	this.tx.name = "tx";
 	this.tx.lineHeight = 42;
 	this.tx.parent = this;
 	this.tx.setTransform(878.3,50.3);
 
-	this.timeline.addTween(cjs.Tween.get(this.tx).wait(1));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.tx},{t:this.ttx}]}).wait(1));
 
 	// レイヤー 1
 	this.co = new lib.c();
@@ -114,7 +129,7 @@ p.nominalBounds = new cjs.Rectangle(-50,-50,100,100);
 	this.timeline.addTween(cjs.Tween.get(this.co).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(1516.3,408.3,24.2,132.1);
+p.nominalBounds = new cjs.Rectangle(1516.3,408.3,24.2,212.1);
 // library properties:
 lib.properties = {
 	width: 1280,

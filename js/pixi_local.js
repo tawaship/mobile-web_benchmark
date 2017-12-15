@@ -30,13 +30,28 @@ function init(n, ngl) {
 		t.y = 80;
 		t.x = 800;
 		
-		app.stage.addChild(t);
+		var tt = new PIXI.Text(0, {
+			fontFamily: 'MS Gothic',
+			align: 'center',
+			fontSize: 40,
+			fill: 0xFF0000
+		});
+		tt.y = 130;
+		tt.x = 800;
+		
+		app.stage.addChild(t, tt);
+		
+		var f = 0;
+		var cnt = 0;
 		
 		var l = controller.children.length;
 		app.ticker.add(function(delta) {
-			var c, s;
-			console.log(delta)
-			t.text = 1 / delta * 60;
+			var c, s, o;
+			o = 1 / delta * 60;
+			t.text = o;
+			f += o;
+			++cnt;
+			tt.text = f / cnt;
 			
 			for (var i = 0; i < l; i++) {
 				c = controller.children[i];
